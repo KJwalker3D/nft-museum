@@ -1,7 +1,8 @@
 // We define the empty imports so the auto-complete feature works as expected.
-import {} from '@dcl/sdk/math'
+import { Vector3 } from '@dcl/sdk/math'
 import { createStructures } from './structures'
 import { ElevatorModule } from './elevator'
+import { createAllDoors, createSlidingDoors } from './doors'
 
 
 
@@ -11,4 +12,7 @@ export function main() {
  let elevator = ElevatorModule.createElevator
 // ElevatorModule.initializeElevatorButtons
  // ElevatorModule.initializeElevatorCallButtons
+createAllDoors()
+
+
 }

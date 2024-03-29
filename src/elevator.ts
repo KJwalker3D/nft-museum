@@ -2,10 +2,14 @@ import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, poin
 import { Vector3, Quaternion } from "@dcl/sdk/math";
 import * as utils from '@dcl-sdk/utils';
 
+
+
+
 const sceneParent = engine.addEntity();
 Transform.create(sceneParent, {
     position: Vector3.create(16, 0, 16)
 });
+
 
 const arrowsButton = 'models/arrows.glb';
 const elevatorModel = 'models/elevator.glb';
@@ -28,7 +32,9 @@ const buttonPositions: Vector3[] = [
     Vector3.create(25.1, 19.975, 15.99)
 ];
 
-let isMoving = false;
+// Uncomment the line below if working with one elevator only
+//let isMoving = false;
+
 let currentFloor = 0;
 
 function createElevator(position: Vector3, rotation: Quaternion) {
@@ -47,7 +53,7 @@ function createElevator(position: Vector3, rotation: Quaternion) {
 // Creating first elevator
 const elevator = createElevator(Vector3.create(36.95 - 8, 3.1, 19.6), Quaternion.fromEulerDegrees(0, -90, 0));
 
-// Remove the line(s) below if only using one elevator
+// Remove the three lines below if only using one elevator
 const elevator2 = createElevator(Vector3.create(28.95, 3.1, 8), Quaternion.fromEulerDegrees(0, -90, 0));
 let isMovingElevator1 = false;
 let isMovingElevator2 = false;
@@ -130,10 +136,11 @@ function createElevatorButton(parent: Entity, position: Vector3, modelSrc: strin
 function initializeElevatorButtons(elevator: Entity, isLeftElevator: Boolean) {
     const buttons: Entity[] = [];
     const buttonOffsetY = -0.005;
+    const numFloors = floors.length;
     
 
-    floors.forEach((floor, index) => {
-        const buttonPositionY = buttonOffsetY * (floors.length - index - 1);
+    floors.forEach((_floor, index) => {
+        const buttonPositionY = buttonOffsetY * (numFloors - index - 1);
         const buttonPositionX = -28.935;
 
       
@@ -193,7 +200,6 @@ function initializeCallButtons() {
         createCallButton(position, Vector3.create(0, -90, 0), index);
     });
 }
-
 
 initializeElevatorButtons(elevator, true);
 initializeElevatorButtons(elevator2, false);
