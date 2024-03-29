@@ -1,3 +1,42 @@
+
+
+
+Audio Credits: 
+
+Sliding doors sound: Magnesus https://freesound.org/people/Magnesus/sounds/368084/ 
+Call Button click sound: BaggoNotes https://freesound.org/people/BaggoNotes/sounds/721503/  
+Moving elevator sound: Isaac200000 https://freesound.org/people/Isaac200000/sounds/260571/ 
+Elevator button click sound: Kickhat https://freesound.org/people/kickhat/sounds/264447/ 
+Elevator arrival sound: MATRIXXX___ https://freesound.org/people/MATRIXXX_/sounds/514864/
+
+All of the audios are controlled by the functions in audio.ts so:
+
+import { playAudioAtPlayer } from "./audio";
+
+
+
+To use the elevator code to add an elevator to your scene, copy and paste elevator.ts into your scene project and add the following into your index file:
+
+import { ElevatorModule } from './elevator'
+
+ElevatorModule.createElevator
+
+If your project works with one elevator instead of two, take a quick look at the elevator code and follow the commented instructions. 
+
+
+To add sliding doors into your project, copy and paste doors.ts into your scene project and add the following to your index.ts file: 
+
+import { createAllDoors } from './doors'
+
+createAllDoors()
+
+Inside doors.ts there's a function called 'createAllDoors()' within which you can define the amount of total doors and the individual positions and rotations.
+
+
+
+
+
+
 # SDK7 Template scene
 
 ## Try it out

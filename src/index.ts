@@ -2,16 +2,15 @@
 import { Vector3 } from '@dcl/sdk/math'
 import { createStructures } from './structures'
 import { ElevatorModule } from './elevator'
-import { createAllDoors, createSlidingDoors } from './doors'
+import { createAllDoors, doorSound } from './doors'
+import { playAudioAtPlayer } from './audio'
 
 
 
 export function main() {
 
-//createStructures()
- let elevator = ElevatorModule.createElevator
-// ElevatorModule.initializeElevatorButtons
- // ElevatorModule.initializeElevatorCallButtons
+createStructures()
+ElevatorModule.createElevator
 createAllDoors()
 
 
