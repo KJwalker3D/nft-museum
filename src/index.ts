@@ -4,6 +4,7 @@ import { createStructures } from './structures'
 import { ElevatorModule } from './elevator'
 import { createAllDoors, doorSound } from './doors'
 import { playAudioAtPlayer } from './audio'
+import { initializeKineticArt } from './kineticArt'
 
 
 
@@ -12,6 +13,7 @@ export function main() {
 createStructures()
 ElevatorModule.createElevator
 createAllDoors()
+initializeKineticArt()
 
 
 }
