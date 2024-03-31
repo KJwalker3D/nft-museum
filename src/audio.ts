@@ -1,6 +1,4 @@
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, MeshRenderer, AvatarAttach, AvatarAnchorPointType } from "@dcl/sdk/ecs";
-import { Vector3, Quaternion } from "@dcl/sdk/math";
-import * as utils from '@dcl-sdk/utils';
 
 let audioEntity: Entity | null = null;
 

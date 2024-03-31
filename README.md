@@ -34,6 +34,14 @@ Inside doors.ts there's a function called 'createAllDoors()' within which you ca
 
 
 
+To add nfts use the function provided in nft.ts, you can customize the urn of the NFT on display (see how to get the URN here: 
+For example:
+
+urn:decentraland:ethereum:erc721:0x06012c8cf97BEaD5deAe237070F9587f8E7A266d:558536
+
+The example above fetches an NFT with the contract address 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d, and the specific identifier 558536. The corresponding asset asset can be found in OpenSea at https://opensea.io/assets/0x06012c8cf97BEaD5deAe237070F9587f8E7A266d/558536 .
+), 
+as well as the frame background colour and frame style. You can also reposition, rotate and scale the nft within the same function
 
 
 

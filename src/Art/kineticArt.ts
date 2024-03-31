@@ -1,8 +1,8 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
-import { playAudioAtPlayer } from "./audio";
-import { doorSound } from "./doors";
+import { playAudioAtPlayer } from "../audio";
+import { doorSound } from "../doors";
 
 const kineticArtCircles = 'models/kineticArt-threeCircles.glb';
 const kineticArtCirclesClip = 'play2'
@@ -64,7 +64,7 @@ export function createKineticArt(
         
         
         )
-        utils.triggers.enableDebugDraw(true)
+        //utils.triggers.enableDebugDraw(true)
 }
 
 
@@ -75,7 +75,7 @@ export function initializeKineticArt( ) {
         Vector3.create(0, 0, 0), // rotation
         Vector3.create(0.5, 0.5, 0.5), //scale
         Vector3.create(0, 0, 0), // trigger position
-        Vector3.create(10, 5, 10), // trigger scale
+        Vector3.create(6, 5, 10), // trigger scale
         kineticArtCircles, // path to model
         kineticArtCirclesClip, // animation clip
     )

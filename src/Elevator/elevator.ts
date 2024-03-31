@@ -1,7 +1,8 @@
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource } from "@dcl/sdk/ecs";
 import { Vector3, Quaternion } from "@dcl/sdk/math";
 import * as utils from '@dcl-sdk/utils';
-import { playAudioAtPlayer } from "./audio";
+import { playAudioAtPlayer } from "../audio";
+import { setCurrentFloor, currentFloor } from "./elevatorState";
 
 
 //add sound when elevator path complete
@@ -26,8 +27,6 @@ const callButtonSound = 'sounds/callButton.mp3'
 const buttonSound = 'sounds/button.mp3';
 const elevatorSound = 'sounds/hum2.mp3';
 const elevatorArrivalSound = 'sounds/elevatorPing.mp3';
-//let player = engine.PlayerEntity
-//let playerPos = Transform.get(player)
 let isMovingElevator1 = false;
 let isMovingElevator2 = false;
 let pathComplete = true;
@@ -51,7 +50,6 @@ const buttonPositions: Vector3[] = [
 // Uncomment the line below if working with one elevator only
 //let isMoving = false;
 
-let currentFloor = 0;
 
 function createElevator(position: Vector3, rotation: Quaternion) {
     const elevator = engine.addEntity();
@@ -95,12 +93,15 @@ function moveToFloor(entity: Entity, floorIndex: number) {
     const targetPosition = Vector3.create(currentPosition.x, targetHeight, currentPosition.z); // Keep X and Z constant
     playAudioAtPlayer(elevatorSound)
     pathComplete = false
+    setCurrentFloor(floorIndex);
 
     utils.tweens.startTranslation(entity, currentPosition, targetPosition, 5, utils.InterpolationType.LINEAR, () => {
         isMoving = false;
-        currentFloor = floorIndex;
-        pathComplete = true
+        floorIndex = currentFloor;
+        pathComplete = true;
         console.log('path complete');
+        setCurrentFloor(floorIndex);
+        console.log(`current floor: ${currentFloor} index: ${floorIndex}`)
         playAudioAtPlayer(elevatorArrivalSound)
     });
 }
@@ -154,8 +155,6 @@ function createElevatorButton(parent: Entity, position: Vector3, modelSrc: strin
 
             console.log(`Elevator button pressed: ${floors[index].name}`);
 
-            // Call the corresponding doors to open
-            //openDoorsForFloor(index);
 
             // Start elevator movement
             moveToFloor(parent, index);

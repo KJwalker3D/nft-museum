@@ -1,10 +1,10 @@
-// We define the empty imports so the auto-complete feature works as expected.
-import { Vector3 } from '@dcl/sdk/math'
 import { createStructures } from './structures'
-import { ElevatorModule } from './elevator'
+import { ElevatorModule } from './Elevator/elevator'
 import { createAllDoors, doorSound } from './doors'
-import { playAudioAtPlayer } from './audio'
-import { initializeKineticArt } from './kineticArt'
+import { initializeKineticArt } from './Art/kineticArt'
+import { initializeElevatorDoors } from './Elevator/elevatorDoors'
+import { initializeGalleryAreas, loadGalleryArea } from './galleryAreas'
+import { initializeNFTs0 } from './Art/nft'
 
 
 
@@ -12,8 +12,11 @@ export function main() {
 
 createStructures()
 ElevatorModule.createElevator
+initializeElevatorDoors()
 createAllDoors()
 initializeKineticArt()
+initializeGalleryAreas()
+initializeNFTs0() 
 
 
 }
