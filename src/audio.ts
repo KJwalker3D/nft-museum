@@ -1,7 +1,7 @@
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, MeshRenderer, AvatarAttach, AvatarAnchorPointType, AudioStream } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils'
 import { openExternalUrl } from '~system/RestrictedActions'
-import { resetUI, setupUi } from "./ui";
+import { setupUi } from "./ui";
 let audioEntity: Entity | null = null;
 
 // Global function to play an audio clip at the player's location
@@ -105,7 +105,6 @@ export function playCurrentSong() {
         currentSongIndex = 0;
        }
        playCurrentSong()
-       resetUI()
        updateNowPlayingTitle(currentTitle, currentArtist)
     
    }, currentSong.duration * 1000)
@@ -120,7 +119,6 @@ export function skipSong() {
     currentSongIndex = 0;
   }
   playCurrentSong();
-  resetUI()
   }
   
 
