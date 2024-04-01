@@ -17,7 +17,6 @@ export function createElevatorDoors(
     openDoorOffset: number,
     closeDoorOffset: number,
     floorIndex: number,
-    //isLeft: boolean,
 ) {
     let doorParent = engine.addEntity();
     let doorsShouldOpen = false;
@@ -43,20 +42,27 @@ export function createElevatorDoors(
         let targetDoorLPos = Vector3.add(currentDoorLPos, Vector3.create(offset + 0.0001, 0, 0));
         let targetDoorRPos = Vector3.subtract(currentDoorRPos, Vector3.create(offset + 0.0001, 0, 0));
 
-        utils.timers.setTimeout(() => playAudioAtPlayer(doorSound), 100)
-        console.log('sound played')
+        if (currentFloor === floorIndex) {
 
-        utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
-        utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
-            isMoving = false; // Set isMoving to false when translation ends
-        });
+            utils.timers.setTimeout(() => playAudioAtPlayer(doorSound), 100)
+            console.log('sound played')
+
+
+            utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
+            utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
+                isMoving = false; // Set isMoving to false when translation ends
+            });
+
+
+        }
     }
 
 
     function closeDoors() {
         if (isOpen) {
-            isOpen = false;
+            console.log('close doors')
             moveDoors(-openDoorOffset);
+            isOpen = false;
         }
     }
 
@@ -78,10 +84,10 @@ export function createElevatorDoors(
             utils.timers.setTimeout(() => {
                 utils.tweens.startTranslation(doorL, currentDoorLPos, targetDoorLPos, 2, utils.InterpolationType.EASEINSINE);
                 utils.tweens.startTranslation(doorR, currentDoorRPos, targetDoorRPos, 2, utils.InterpolationType.EASEINSINE, () => {
-                    // After opening, start closing animation
-                    utils.timers.setTimeout(closeDoors, 2000);
                 });
             }, 100); // Delay the starting of the animation slightly to ensure consistency
+            utils.timers.setTimeout(closeDoors, 4000);
+
         }
     }
 
@@ -109,21 +115,16 @@ export function createElevatorDoors(
                 return; // Do not open the doors if the elevator is not at the current floor
             }
 
-            //if ((isLeft && Transform.get(otherEntity).position.x < position.x) || (!isLeft && Transform.get(otherEntity).position.x > position.x)) {
-            //    console.log('Entity is on the wrong side');
-            //    return;
-            //}
-
             doorsShouldOpen = true;
-            setCurrentFloor(floorIndex)            
+            setCurrentFloor(floorIndex)
             if (doorsShouldOpen && !isOpen) {
                 openDoors();
                 doorsShouldOpen = false;
             }
         },
         function (anotherEntity) {
-           
-            if ( !isOpen && floorIndex == currentFloor) {
+
+            if (!isOpen && floorIndex == currentFloor) {
                 openDoors();
                 console.log('open doors')
                 doorsShouldOpen = false;

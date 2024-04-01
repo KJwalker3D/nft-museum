@@ -58,7 +58,6 @@ export function createKineticArt(
             }
         },
         function (anotherEntity) {
-            //animateArt.playing = false
             let stopAnim = Animator.stopAllAnimations(kineticArtEntity, false)
         }
         
@@ -68,7 +67,7 @@ export function createKineticArt(
 }
 
 
-export function initializeKineticArt( ) {
+export function initializeKineticArt() {
 
     createKineticArt(
         Vector3.create(21.65, 10.5, 16), // art position

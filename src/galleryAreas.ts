@@ -138,21 +138,22 @@ export function initializeGalleryAreas() {
 
 
     // Create trigger zones around gallery areas
-    // Ground floor
+
+    // Ground floor trigger area
     createGalleryAreaTriggers(
         Vector3.create(4, 1.5, 8), // position
         Vector3.create(16, 6, 20)); // scale
         
     
-    //First floor
+    //First floor trigger area
     createGalleryAreaTriggers(
         Vector3.create(6.65, 5.5, 8),
         Vector3.create(26.2, 10, 26)
     )
 
-    //Rooftop
+    //Rooftop trigger area
     createGalleryAreaTriggers(
-        Vector3.create(6.65, 10.5, 8),
+        Vector3.create(6.65, 12.5, 8),
         Vector3.create(26.2, 10, 26)
     )
 }

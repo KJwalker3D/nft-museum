@@ -29,7 +29,7 @@
 			"default": true,
 			"position": {
 				"x": [
-					8,
+					20,
 					3
 				],
 				"y": [
@@ -52,5 +52,6 @@
 		"ALLOW_TO_TRIGGER_AVATAR_EMOTE",
 		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
 	],
-	"featureToggles": {}
+	"featureToggles": {},
+	"vlm": { "sceneId": "b813df76-8f91-4d6b-89fa-269ae930440a" }
 }

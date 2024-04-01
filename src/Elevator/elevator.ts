@@ -27,6 +27,7 @@ const callButtonSound = 'sounds/callButton.mp3'
 const buttonSound = 'sounds/button.mp3';
 const elevatorSound = 'sounds/hum2.mp3';
 const elevatorArrivalSound = 'sounds/elevatorPing.mp3';
+let isMoving = false
 let isMovingElevator1 = false;
 let isMovingElevator2 = false;
 let pathComplete = true;
@@ -64,6 +65,9 @@ function createElevator(position: Vector3, rotation: Quaternion) {
     return elevator;
 }
 
+
+// For independently moving elevators use this moveToFloor function instead.
+/*
 function moveToFloor(entity: Entity, floorIndex: number) {
     
     // Remove the line(s) below if only using one elevator
@@ -105,6 +109,43 @@ function moveToFloor(entity: Entity, floorIndex: number) {
         playAudioAtPlayer(elevatorArrivalSound)
     });
 }
+*/
+
+// For elevators moving together use this moveToFloor function
+function moveToFloor(entity: Entity, floorIndex: number) {
+    if (isMoving) return; // Ensure that both elevators are not already moving
+
+    isMoving = true; // Mark both elevators as moving
+
+    const targetHeight = floors[floorIndex].height;
+    const currentPosition1 = Transform.get(elevator).position;
+    const currentPosition2 = Transform.get(elevator2).position;
+
+    const targetPosition1 = Vector3.create(currentPosition1.x, targetHeight, currentPosition1.z); // Keep X and Z constant for elevator 1
+    const targetPosition2 = Vector3.create(currentPosition2.x, targetHeight, currentPosition2.z); // Keep X and Z constant for elevator 2
+
+    playAudioAtPlayer(elevatorSound);
+    pathComplete = false;
+    setCurrentFloor(floorIndex);
+
+    // Move both elevators simultaneously
+    utils.tweens.startTranslation(elevator, currentPosition1, targetPosition1, 5, utils.InterpolationType.LINEAR, () => {
+        // Callback when elevator 1 movement is complete
+        pathComplete = true;
+        console.log('path complete');
+        setCurrentFloor(floorIndex);
+        console.log(`current floor: ${currentFloor} index: ${floorIndex}`);
+        playAudioAtPlayer(elevatorArrivalSound);
+        isMoving = false; // Mark both elevators as not moving
+    });
+
+    utils.tweens.startTranslation(elevator2, currentPosition2, targetPosition2, 5, utils.InterpolationType.LINEAR, () => {
+        // Callback when elevator 2 movement is complete
+        // No need to duplicate pathComplete, setCurrentFloor, console.log, and playAudioAtPlayer statements since they are common for both elevators
+    });
+}
+
+
 
 function createElevatorButton(parent: Entity, position: Vector3, modelSrc: string, yOffset: number, index: number, doorsShouldOpen: boolean) {
     
