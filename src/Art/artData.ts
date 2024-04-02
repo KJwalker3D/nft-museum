@@ -1,7 +1,25 @@
+import { Entity } from "@dcl/ecs";
 
 
 
 /// Artwork data like images / videos / urls in here for ease of access
+
+
+export interface ArtworkData {
+    entity: Entity;
+    artworkId: number;
+    title: string;
+    description: string;
+    visible: boolean;
+}
+
+export const artworkData: ArtworkData[] = []
+
+
+export function addArtworkData(entity: Entity, artworkId: number, title: string, description: string, visible: boolean) {
+    artworkData.push({ entity, artworkId, title, description, visible });
+}
+
 
 // Use server hosted images or paths to files in your project folder
 export let logoImage = 'https://bafkreih4ndg6qpczqw2ardbrrdoj23t43hiegbceo36hbi3vjqskcoi4yu.ipfs.nftstorage.link/'

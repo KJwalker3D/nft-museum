@@ -10,8 +10,7 @@ import * as utils from '@dcl-sdk/utils'
 let dispenserModel = 'models/dispenser.glb'
 let dispenserPosition = Vector3.create(16, 20, 16)
 let dispenserHoverText = 'Claim Reward'
-let rewardImage = 'images/wearable.png'
-let rewardName = 'Patch Pants'
+export let reward = false
 
 
 export function createWearableReward() {
@@ -31,10 +30,11 @@ export function createWearableReward() {
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
   })
 
-  // Remove line 35 to stop the dispenser from spinning
+ 
+  // Remove line below to stop the dispenser from spinning
   utils.perpetualMotions.startRotation(dispenserWearable, Quaternion.fromEulerDegrees(0, 25, 0))
-  
-  
+
+
   pointerEventsSystem.onPointerDown(
     {
       entity: dispenserWearable,
@@ -45,7 +45,7 @@ export function createWearableReward() {
       }
     },
     function () {
-      rewardUI(rewardImage, rewardName)
+      reward = true
       let camp = ClaimConfig.campaign.CAMPAIGN_TEST
       claimToken(camp, camp.campaignKeys.KEY_0)
       console.log('claimed Wearable gift')

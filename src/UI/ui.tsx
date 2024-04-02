@@ -4,6 +4,8 @@ import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/re
 import { nowPlayingElement, updateTitle, playCurrentSong, playingArtist, playlist, skipSong, streamPlaying, togglePlay, updateNowPlayingTitle, openMixcloud, currentSong, radioPlaying, openRadio } from '../audio'
 import { setupUiInfoEngine, tieredFontScale, tieredModalTextWrapScale, wordWrap } from '../helperFunctions'
 import *  as  ui from 'dcl-ui-toolkit'
+import { rewardUI } from './claim.ui'
+import { artDetailsUI } from './artHover.ui'
 
 // Set Playlist to 'false' to hide the playlist UI:
 let Playlist: Boolean = true
@@ -13,10 +15,13 @@ let Radio: Boolean = false
 
 
 const backgroundColor = Color4.create(0, 0, 0, 0.9) // semi transparent black
+let rewardImage = 'images/wearable.png'
+let rewardName = 'Patch Pants'
 const pauseIcon = 'images/pauseIcon.png';
 const playIcon = 'images/playIcon.png';
 const skipIcon = 'images/skipIcon.png'
-let isPlaying: boolean = true;
+
+
 let songData = `${nowPlayingElement}\n ${playingArtist}`
 let songDataWrap = wordWrap(songData, 12 * tieredModalTextWrapScale, 6)
 
@@ -28,8 +33,10 @@ export function setupUi() {
 }
 
 export const uiComponent = () => [
+    artDetailsUI(),
     playlistUI(),
     radioUI(),
+    rewardUI(rewardImage, rewardName),
     ui.render()
 ]
 
@@ -73,7 +80,7 @@ export function playlistUI() {
                             height: `${UiCanvasInformation.get(engine.RootEntity).height * 0.05}`,
                             margin: '0 0 5 0'
                         }}
-                        value={'Playlist'}
+                        value={`${songDataWrap}`}
                         fontSize={14 * tieredFontScale}
                         color={Color4.White()}
                         onMouseDown={openMixcloud}

@@ -86,7 +86,7 @@ function createGallery2() {
 let player = engine.PlayerEntity 
 
 // Define gallery areas
-const galleryAreas: { position: Vector3, entities: Entity[] } [] = [
+export const galleryAreas: { position: Vector3, entities: Entity[] } [] = [
     //Ground floor gallery
     { position: Vector3.create(10, 0, 16), entities: [] },
 

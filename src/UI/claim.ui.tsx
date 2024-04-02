@@ -1,11 +1,14 @@
 import { Color4 } from '@dcl/sdk/math'
 import { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
 import  *  as  ui  from  'dcl-ui-toolkit'
+import { reward } from '../claim-dropin/rewards'
+
+let showRewardUI = reward
 
 
 export function rewardUI(thumbnail: string, wearableName: string ){
 
-
+if (showRewardUI) {
 
 	const customPrompt = ui.createComponent(ui.CustomPrompt, {
 		style: ui.PromptStyles.DARK,
@@ -56,6 +59,7 @@ export function rewardUI(thumbnail: string, wearableName: string ){
 	})
 
 	customPrompt.show()
+}
 }
 
 
