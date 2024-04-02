@@ -8,6 +8,9 @@ export let streamPlaying: boolean = true;
 // This is the radio, set to true to play it 
 export let radioPlaying: boolean = false
 
+// House Radio (24 House Radio)
+let radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
+
 
 // Global function to play an audio clip at the player's location
 export function playAudioAtPlayer(audioClipUrl: string, volume: number = 100) {
@@ -147,4 +150,14 @@ export function skipSong() {
 
   export function openRadio() {
     openExternalUrl({url: "https://onlineradiobox.com/ro/24house/?cs=ro.24house"})
+  }
+
+
+  export function playRadio() {
+    if (radioPlaying) {
+     const audioStream = AudioStream.getMutable(streamEntity);
+  
+     audioStream.url = radioStation;
+     audioStream.playing = true;
+    }
   }

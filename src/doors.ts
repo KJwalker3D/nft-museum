@@ -159,7 +159,7 @@ export function createSlidingDoor(
     
         let currentDoorPos = Transform.get(door).position;
     
-        let targetDoorPos = Vector3.add(currentDoorPos, Vector3.create(offset + 0.0001, 0, 0));
+        let targetDoorPos = Vector3.add(currentDoorPos, Vector3.create(offset - 0.01, 0, 0));
 
         // Play door sound
         let triggerAudio = AudioSource.playSound(doorParent, doorSound)
@@ -190,7 +190,7 @@ export function createSlidingDoor(
             moveDoor(openDoorOffset); 
 
             utils.timers.setTimeout(() => {
-                utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, 2, utils.InterpolationType.EASEINSINE, () => {
+                utils.tweens.startTranslation(door, currentDoorPos, targetDoorPos, 4, utils.InterpolationType.EASEINSINE, () => {
                     // After opening, start closing animation
                     utils.timers.setTimeout(closeDoor, 2000); 
                 });
@@ -267,7 +267,7 @@ export function createAllDoors() {
 
     // First floor, north facing door
     createSlidingDoor(
-        Vector3.create(10, 10.75, 24),
+        Vector3.create(9.36, 10.5, 23.9),
         Vector3.create(0, 0, 0),
         singleDoor,
         9,
@@ -277,7 +277,13 @@ export function createAllDoors() {
 
 
     // First floor, south facing door
-
+    createSlidingDoor(
+        Vector3.create(9.375, 10.5, 8.1),
+        Vector3.create(0, 0, 0),
+        singleDoor,
+        9,
+        0
+    )
 }
 
 

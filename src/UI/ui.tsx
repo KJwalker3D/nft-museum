@@ -11,8 +11,7 @@ let Playlist: Boolean = true
 // Set Radio to 'true' to show the radio UI:
 let Radio: Boolean = false
 
-// House Radio (24 House Radio)
-let radioStation = 'https://strw3.openstream.co/1487?aw_0_1st.collectionid%3D4682%26stationId%3D4682%26publisherId%3D1511%26k%3D1708457720'
+
 const backgroundColor = Color4.create(0, 0, 0, 0.9) // semi transparent black
 const pauseIcon = 'images/pauseIcon.png';
 const playIcon = 'images/playIcon.png';

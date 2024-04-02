@@ -8,7 +8,7 @@ import { initializeNFTs0 } from './Art/nft'
 import { initializeToggleableArt } from './Art/videoArt'
 //import VLM from 'vlm-dcl'
 import { setupUi } from './UI/ui'
-import { playCurrentSong, playlist, shufflePlaylist } from './audio'
+import { playCurrentSong, playRadio, playlist, shufflePlaylist } from './audio'
 
 
 
@@ -24,8 +24,13 @@ initializeNFTs0()
 initializeToggleableArt()
 
 setupUi()
+
+// Use these functions to trigger the playlist (also toggle playlist and radio booleans in audio.ts and ui.tsx)
 shufflePlaylist(playlist)
 playCurrentSong()
-//VLM.init()
+
+// Use this function to trigger the radio (also toggle playlist and radio booleans in audio.ts and ui.tsx)
+//playRadio()
+
 
 }
