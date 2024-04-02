@@ -1,10 +1,13 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math";
 import { engine, Transform, Entity, MeshRenderer } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
+import { createWearableReward } from "./claim-dropin/rewards";
 
 
-let player = engine.PlayerEntity 
+// Add the assets you want to appear in each gallery area within the corresponding functions below (createGallery0, createGallery1, etc.) and they will load or offload depending on player proximity
 
+
+// Ground floor
 function createGallery0() {
     const area = galleryAreas[0];
     const entity1 = createGalleryEntity(Vector3.create(16, 0, 16), Vector3.create(0, 0, 0));
@@ -13,6 +16,7 @@ function createGallery0() {
 
 }
 
+// First floor
 function createGallery1() {
     const area = galleryAreas[1];
     const entity3 = createGalleryEntity(Vector3.create(16, 10, 16), Vector3.create(0, 0, 0));
@@ -21,18 +25,19 @@ function createGallery1() {
 
 }
 
+// Rooftop
 function createGallery2() {
     const area = galleryAreas[2];
-    const entity5 = createGalleryEntity(Vector3.create(16, 20, 16), Vector3.create(0, 0, 0));
-    const entity6 = createGalleryEntity(Vector3.create(15, 20, 13), Vector3.create(0, 0, 0));
-    area.entities.push(entity5, entity6);
+    let entity5 = createWearableReward()
+    area.entities.push(entity5);
 
 }
 
 
+let player = engine.PlayerEntity 
 
 // Define gallery areas
-const galleryAreas: { position: Vector3, entities: Entity[] }[] = [
+const galleryAreas: { position: Vector3, entities: Entity[] } [] = [
     //Ground floor gallery
     { position: Vector3.create(10, 0, 16), entities: [] },
 
@@ -148,7 +153,7 @@ export function initializeGalleryAreas() {
     //First floor trigger area
     createGalleryAreaTriggers(
         Vector3.create(6.65, 5.5, 8),
-        Vector3.create(26.2, 10, 26)
+        Vector3.create(26.2, 10, 32)
     )
 
     //Rooftop trigger area

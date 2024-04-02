@@ -8,6 +8,9 @@ Call Button click sound: BaggoNotes https://freesound.org/people/BaggoNotes/soun
 Moving elevator sound: Isaac200000 https://freesound.org/people/Isaac200000/sounds/260571/ 
 Elevator button click sound: Kickhat https://freesound.org/people/kickhat/sounds/264447/ 
 Elevator arrival sound: MATRIXXX___ https://freesound.org/people/MATRIXXX_/sounds/514864/
+Radio station: 24 House Radio https://onlineradiobox.com/ro/24house/?cs=ro.24house 
+Playlist: Featuring music by DJ Red Albert, performed in DCL and available with the Red Albert Radio Smart Wearable 
+
 
 All of the audios are controlled by the functions in audio.ts so:
 
@@ -42,6 +45,9 @@ urn:decentraland:ethereum:erc721:0x06012c8cf97BEaD5deAe237070F9587f8E7A266d:5585
 The example above fetches an NFT with the contract address 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d, and the specific identifier 558536. The corresponding asset asset can be found in OpenSea at https://opensea.io/assets/0x06012c8cf97BEaD5deAe237070F9587f8E7A266d/558536 .
 ), 
 as well as the frame background colour and frame style. You can also reposition, rotate and scale the nft within the same function
+
+
+To set up Wearable claiming, copy and paste the claim-droping folder into your project, alongside config.ts and claim.ui.tsx
 
 
 

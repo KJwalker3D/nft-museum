@@ -1,8 +1,13 @@
 import { Animator, engine, Transform, GltfContainer, ColliderLayer, Entity, pointerEventsSystem, InputAction, AudioSource, MeshRenderer, AvatarAttach, AvatarAnchorPointType, AudioStream } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils'
 import { openExternalUrl } from '~system/RestrictedActions'
-import { setupUi } from "./ui";
-let audioEntity: Entity | null = null;
+
+/// This is the Playlist, set to false to remove it
+export let streamPlaying: boolean = true;
+
+// This is the radio, set to true to play it 
+export let radioPlaying: boolean = false
+
 
 // Global function to play an audio clip at the player's location
 export function playAudioAtPlayer(audioClipUrl: string, volume: number = 100) {
@@ -29,6 +34,9 @@ export function playAudioAtPlayer(audioClipUrl: string, volume: number = 100) {
 
     console.log('Audio played at player location:', audioClipUrl);
 }
+
+let audioEntity: Entity | null = null;
+
 
 ///// PLAYLIST
 
@@ -122,7 +130,6 @@ export function skipSong() {
   }
   
 
-  export let streamPlaying: boolean = true;
   export function togglePlay() {
     const stream = AudioStream.getMutable(streamEntity);
     if (stream.playing) {
@@ -136,4 +143,8 @@ export function skipSong() {
 
   export function openMixcloud() {
     openExternalUrl({url: "https://www.mixcloud.com/alberto-mart%C3%ADnez-cobos/uploads/"})
+  }
+
+  export function openRadio() {
+    openExternalUrl({url: "https://onlineradiobox.com/ro/24house/?cs=ro.24house"})
   }

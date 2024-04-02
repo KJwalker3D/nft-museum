@@ -7,7 +7,7 @@ import { initializeGalleryAreas, loadGalleryArea } from './galleryAreas'
 import { initializeNFTs0 } from './Art/nft'
 import { initializeToggleableArt } from './Art/videoArt'
 //import VLM from 'vlm-dcl'
-import { setupUi } from './ui'
+import { setupUi } from './UI/ui'
 import { playCurrentSong, playlist, shufflePlaylist } from './audio'
 
 
