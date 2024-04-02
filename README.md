@@ -50,6 +50,8 @@ as well as the frame background colour and frame style. You can also reposition,
 To set up Wearable claiming, copy and paste the claim-droping folder into your project, alongside config.ts and claim.ui.tsx
 
 
+To host your images on an external site, instead of uploading them as files in your scene, you can use CORS friendly hosting services such as NFT.storage (https://nft.storage/). Upload your image, click 'Actions' - 'View URL' and copy the full url from the browser. 
+
 
 # SDK7 Template scene
 

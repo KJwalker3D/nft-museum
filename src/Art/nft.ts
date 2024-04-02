@@ -20,67 +20,39 @@ export function createNFT(
         scale: scale
     })
     NftShape.create(nftEntity, {
-        urn: urn
+        urn: urn,
+        color: frameColor,
+        style: frameStyle
     })
-}
-
-export function initializeNFTs0() {
-    
-    createNFT(
-        Vector3.create(16, 1, 16),
-        Vector3.One(),
-        Vector3.One(),
-        urn5,
-        Color3.Magenta(),
-        canvasFrame
-    )
+    return nftEntity
 }
 
 
-
-
-
-
-let urn1 = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:558536'
-let urn2 = 'urn:decentraland:ethereum:erc721:0xd73be539d6b2076bab83ca6ba62dfe189abc6bbe:64359'
-let urn3 = 'urn:decentraland:ethereum:erc721:0x41a322b28d0ff354040e2cbc676f0320d8c8850d:3734'
-let urn4 = 'urn:decentraland:ethereum:erc721:0xecf7ef42b57ee37a959bf507183c5dd6bf182081:100'
-let urn5 = 'urn:decentraland:ethereum:erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:1540722'
-
-
-
-
-// Working urns from Nico
-
-//https://opensea.io/assets/ethereum/0xd73be539d6b2076bab83ca6ba62dfe189abc6bbe/64359
-//https://opensea.io/assets/ethereum/0x41a322b28d0ff354040e2cbc676f0320d8c8850d/3734
-//https://opensea.io/assets/ethereum/0xecf7ef42b57ee37a959bf507183c5dd6bf182081/100
-//https://opensea.io/assets/ethereum/0x06012c8cf97bead5deae237070f9587f8e7a266d/1540722
 
 
 
 // Styles of NFT frames
 
-let classicFrame = NftFrameType.NFT_CLASSIC
-let baroqueFrame = NftFrameType.NFT_BAROQUE_ORNAMENT
-let diamondFrame = NftFrameType.NFT_DIAMOND_ORNAMENT
-let minimalFrame = NftFrameType.NFT_MINIMAL_WIDE
-let minimalGreyFrame = NftFrameType.NFT_MINIMAL_GREY
-let blockyFrame = NftFrameType.NFT_BLOCKY
-let goldEdgesFrame = NftFrameType.NFT_GOLD_EDGES
-let goldCarvedFrame = NftFrameType.NFT_GOLD_CARVED
-let goldWideFrame = NftFrameType.NFT_GOLD_WIDE
-let goldRoundedFrame = NftFrameType.NFT_GOLD_ROUNDED
-let metalMediumFrame = NftFrameType.NFT_METAL_MEDIUM
-let metalWideFrame = NftFrameType.NFT_METAL_WIDE
-let metalSlimFrame = NftFrameType.NFT_METAL_SLIM
-let metalRoundFrame = NftFrameType.NFT_METAL_ROUNDED
-let pinsFrame = NftFrameType.NFT_PINS
-let minimalBlackFrame = NftFrameType.NFT_MINIMAL_BLACK
-let minimalWhiteFrame = NftFrameType.NFT_MINIMAL_WHITE
-let tapeFrame = NftFrameType.NFT_TAPE
-let woodSlimFrame = NftFrameType.NFT_WOOD_SLIM
-let woodWideFrame = NftFrameType.NFT_WOOD_WIDE
-let woodTwigsFrame = NftFrameType.NFT_WOOD_TWIGS
-let canvasFrame = NftFrameType.NFT_CANVAS
-let noFrame = NftFrameType.NFT_NONE
+export let classicFrame = NftFrameType.NFT_CLASSIC
+export let baroqueFrame = NftFrameType.NFT_BAROQUE_ORNAMENT
+export let diamondFrame = NftFrameType.NFT_DIAMOND_ORNAMENT
+export let minimalFrame = NftFrameType.NFT_MINIMAL_WIDE
+export let minimalGreyFrame = NftFrameType.NFT_MINIMAL_GREY
+export let blockyFrame = NftFrameType.NFT_BLOCKY
+export let goldEdgesFrame = NftFrameType.NFT_GOLD_EDGES
+export let goldCarvedFrame = NftFrameType.NFT_GOLD_CARVED
+export let goldWideFrame = NftFrameType.NFT_GOLD_WIDE
+export let goldRoundedFrame = NftFrameType.NFT_GOLD_ROUNDED
+export let metalMediumFrame = NftFrameType.NFT_METAL_MEDIUM
+export let metalWideFrame = NftFrameType.NFT_METAL_WIDE
+export let metalSlimFrame = NftFrameType.NFT_METAL_SLIM
+export let metalRoundFrame = NftFrameType.NFT_METAL_ROUNDED
+export let pinsFrame = NftFrameType.NFT_PINS
+export let minimalBlackFrame = NftFrameType.NFT_MINIMAL_BLACK
+export let minimalWhiteFrame = NftFrameType.NFT_MINIMAL_WHITE
+export let tapeFrame = NftFrameType.NFT_TAPE
+export let woodSlimFrame = NftFrameType.NFT_WOOD_SLIM
+export let woodWideFrame = NftFrameType.NFT_WOOD_WIDE
+export let woodTwigsFrame = NftFrameType.NFT_WOOD_TWIGS
+export let canvasFrame = NftFrameType.NFT_CANVAS
+export let noFrame = NftFrameType.NFT_NONE

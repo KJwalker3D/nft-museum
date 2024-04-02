@@ -123,7 +123,7 @@ export function createSlidingDoors(
 
 
     // Uncomment line below to see the trigger box
-    utils.triggers.enableDebugDraw(true);
+    //utils.triggers.enableDebugDraw(true);
 }
 
 // Single sliding door

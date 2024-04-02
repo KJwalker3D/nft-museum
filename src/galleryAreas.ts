@@ -1,18 +1,67 @@
-import { Quaternion, Vector3 } from "@dcl/sdk/math";
+import { Color3, Quaternion, Vector3 } from "@dcl/sdk/math";
 import { engine, Transform, Entity, MeshRenderer } from "@dcl/sdk/ecs";
 import * as utils from '@dcl-sdk/utils';
 import { createWearableReward } from "./claim-dropin/rewards";
+import { createImageArt } from "./Art/imageArt";
+import { groundVideo, logoImage, logoURL } from "./Art/artData";
+import { gallery1Pos1, gallery1Pos2, gallery1Pos3, gallery1Pos4, gallery1Pos5, gallery1Rot1, gallery1Rot2, gallery1Rot3, gallery1Rot4, gallery1Rot5 } from "./Art/artPositions";
+import { createToggleableArt } from "./Art/videoArt";
+import { urn1, urn2, urn3 } from "./Art/artData";
+import { createNFT, canvasFrame } from "./Art/nft";
 
 
 // Add the assets you want to appear in each gallery area within the corresponding functions below (createGallery0, createGallery1, etc.) and they will load or offload depending on player proximity
 
 
 // Ground floor
-function createGallery0() {
+async function createGallery0() {
     const area = galleryAreas[0];
-    const entity1 = createGalleryEntity(Vector3.create(16, 0, 16), Vector3.create(0, 0, 0));
-    const entity2 = createGalleryEntity(Vector3.create(15, 0, 13), Vector3.create(0, 0, 0));
-    area.entities.push(entity1, entity2);
+    const entity1 = createImageArt(
+        logoImage,
+        gallery1Pos4,
+        gallery1Rot4,
+        Vector3.create(1, 1, 1),
+        'Click',
+        logoURL,
+        true
+    );
+    const entity2 = createImageArt(
+        logoImage,
+        gallery1Pos5,
+        gallery1Rot5,
+        Vector3.One(),
+        'Click',
+        logoURL,
+        true
+    )
+    const e3 = await createToggleableArt(
+        gallery1Pos2,
+        gallery1Rot2,
+        Vector3.create(.005 * 1096, .005 * 720, 1),
+        logoImage,
+        groundVideo,
+        'Click',
+        logoURL,
+        Vector3.create(5, 5, 7)
+    )
+    const e4 = createNFT(
+        gallery1Pos1,
+        gallery1Rot1,
+        Vector3.create(4, 4, 4),
+        urn2,
+        Color3.Yellow(),
+        canvasFrame
+    )
+    const e5 = createNFT(
+        gallery1Pos3,
+        gallery1Rot3,
+        Vector3.create(4, 4, 4),
+        urn3,
+        Color3.Yellow(),
+        canvasFrame
+    )
+   
+    area.entities.push(entity1, entity2, e3, e4, e5);
 
 }
 
