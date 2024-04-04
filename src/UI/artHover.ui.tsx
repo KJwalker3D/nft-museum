@@ -22,32 +22,29 @@ const descriptionColor = Color4.White()
 const artFrame = 'images/artFrame.png'
 
 
-export function createArtUI(position: Vector3, rotation: Vector3, artworkId: number, artTitle: string, artDescription: string): Entity {
-    const entity = engine.addEntity()
-    ArtComponent.create(entity, { artTitle, artDescription })
-    addArtworkData(entity, artworkId, artTitle, artDescription, true);
-    setArtworkId(entity, artworkId);
-    Transform.create(entity, { position: position, rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z), scale: Vector3.create(1, 0.85, 5) })
-    MeshCollider.setBox(entity)
-  
-    ArtHover.create(entity, { visible: false })
-    PointerEvents.create(entity, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_HOVER_ENTER, eventInfo: {
-            button: InputAction.IA_ANY, hoverText: artTitle,
-          }
+export function createArtUI(x: number, y: number, z: number, r: number, artworkId: number, artTitle: string, artDescription: string): Entity {
+  const entity = engine.addEntity()
+  ArtComponent.create(entity, { artTitle, artDescription })
+  addArtworkData(entity, artworkId, artTitle, artDescription, true);
+  setArtworkId(entity, artworkId);
+  Transform.create(entity, { position: { x, y, z }, rotation: Quaternion.fromEulerDegrees(0, r, 0), scale: Vector3.create(1, 0.85, 5) })
+  MeshCollider.setBox(entity)
+
+  ArtHover.create(entity, { visible: true })
+  PointerEvents.create(entity, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_HOVER_ENTER, eventInfo: {
+          button: InputAction.IA_ANY, hoverText: artTitle,
         }
-        
-      ]
-    })
-    return entity
-  }
+      }
+      
+    ]
+  })
 
+  return entity
+}
 
-
-  // for each gallery entity => position = position.y -1, rotation = rotation, scale: scale,
-// artworkid = artwork id, arttitle = arttile, artdescription = art description
 
 
 export function artDetailsUI() {
@@ -59,9 +56,9 @@ export function artDetailsUI() {
       const artTitleWrap = wordWrap(title, 12 * tieredModalTextWrapScale, 6) 
       const artDescriptionWrap = breakLines(description, Max_Chars)
       return (
-        <UiEntity key={'main'}
+        <UiEntity key={'art-details-main'}
           uiTransform={{
-            height: `${UiCanvasInformation.get(engine.RootEntity).height * .15}`,
+            height: `${UiCanvasInformation.get(engine.RootEntity).height * .5}`,
             width: `${UiCanvasInformation.get(engine.RootEntity).width * .5}`,
             positionType: 'absolute',
             position: `5% 0 0 89%`,

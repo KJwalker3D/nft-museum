@@ -3,7 +3,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math';
 import { CONFIG } from '../config';
 import { claimToken } from "./claim";
 import { ClaimConfig } from "./claimConfig";
-import { rewardUI } from '../UI/claim.ui';
+import { rewardUI } from '../UI/reward.ui';
 import * as utils from '@dcl-sdk/utils'
 
 

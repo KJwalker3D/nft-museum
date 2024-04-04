@@ -5,7 +5,9 @@ import { playAudioAtPlayer } from "../audio";
 import { setCurrentFloor, currentFloor } from "./elevatorState";
 
 
-//add sound when elevator path complete
+export let elevatorPos1 = Vector3.create(36.95 - 8, 3.1, 19.6)
+export let elevatorRot = Quaternion.fromEulerDegrees(0, -90, 0)
+export let elevatorPos2 = Vector3.create(28.95, 3.1, 12.35)
 
 /// This file relies on audio code present in audio.ts
 
@@ -292,11 +294,12 @@ function initializeCallButtons() {
     });
 }
 
+
 // Creating first elevator
-const elevator = createElevator(Vector3.create(36.95 - 8, 3.1, 19.6), Quaternion.fromEulerDegrees(0, -90, 0));
+const elevator = createElevator(elevatorPos1, elevatorRot);
 
 // Remove the three lines below if only using one elevator
-const elevator2 = createElevator(Vector3.create(28.95, 3.1, 12.35), Quaternion.fromEulerDegrees(0, -90, 0));
+const elevator2 = createElevator(elevatorPos2, elevatorRot);
 
 
 initializeElevatorButtons(elevator, true);

@@ -29,7 +29,7 @@
 			"default": true,
 			"position": {
 				"x": [
-					20,
+					26,
 					3
 				],
 				"y": [
@@ -37,7 +37,7 @@
 					0
 				],
 				"z": [
-					20,
+					26,
 					3
 				]
 			},
@@ -53,5 +53,9 @@
 		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
 	],
 	"featureToggles": {},
-	"vlm": { "sceneId": "b813df76-8f91-4d6b-89fa-269ae930440a" }
+	
+		"worldConfiguration": {
+			"name": "kjwalker.dcl.eth"
+		}
+	
 }

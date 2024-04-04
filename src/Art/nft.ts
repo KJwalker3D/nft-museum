@@ -1,6 +1,7 @@
-import { NftFrameType, NftShape, Transform, engine } from "@dcl/ecs";
+import { InputAction, NftFrameType, NftShape, Transform, engine, pointerEventsSystem } from "@dcl/ecs";
 import { Color3, Quaternion, Vector3 } from "@dcl/ecs-math";
 import { Enum } from "protobufjs";
+import { openNftDialog } from "~system/RestrictedActions";
 
 
 
@@ -10,7 +11,8 @@ export function createNFT(
     scale: Vector3,
     urn: string,
     frameColor: Color3,
-    frameStyle: NftFrameType // listed below
+    frameStyle: NftFrameType, // listed below
+    hoverText: string
 ) 
 {
     let nftEntity = engine.addEntity()
@@ -24,6 +26,18 @@ export function createNFT(
         color: frameColor,
         style: frameStyle
     })
+
+    pointerEventsSystem.onPointerDown(
+        {
+          entity: nftEntity,
+          opts: { button: InputAction.IA_PRIMARY, hoverText: hoverText },
+        },
+        function () {
+          openNftDialog({
+            urn: urn,
+          })
+        }
+      )
     return nftEntity
 }
 
@@ -32,6 +46,9 @@ export function createNFT(
 
 
 // Styles of NFT frames
+
+// Advice: 
+// Use type 'noFrame' / 'None' to save on scene resources
 
 export let classicFrame = NftFrameType.NFT_CLASSIC
 export let baroqueFrame = NftFrameType.NFT_BAROQUE_ORNAMENT

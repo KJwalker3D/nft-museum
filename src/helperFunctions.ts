@@ -1,4 +1,8 @@
-import { PBUiCanvasInformation, UiCanvasInformation, engine } from "@dcl/sdk/ecs";
+import { Entity, PBUiCanvasInformation, TextShape, Transform, UiCanvasInformation, engine } from "@dcl/sdk/ecs";
+import { galleryAreas } from "./galleryAreas";
+import { Color4, Vector3 } from "@dcl/sdk/math";
+import { changeCurrentArtworkId, getArtworkId, setArtworkId } from "./Art/artHover";
+import { gallery1Pos1 } from "./Art/artPositions";
 
 let setupUiInfoEngineAlready = false
 //Bence's scaling method
@@ -272,4 +276,43 @@ export function getRandomHexColor(): string {
     return color;
   }
   
-  
+/*
+  //not working
+  export function showArtIds() {
+    //if (SHOW_ART_IDS) {
+        console.log('showing ids');
+
+        // Iterate over each gallery area
+        galleryAreas.forEach(area => {
+            // Iterate over each entity in the current gallery area
+            area.entities.forEach(entity => {
+                // Get the artwork ID for the current entity
+                const artworkId = getArtworkId(entity); 
+                if (!artworkId) {
+                    console.log('no artwork id')
+                    return;
+                }
+                setArtworkId(entity, artworkId)
+                // Retrieve the position of the current entity
+                const entityTransform = Transform.get(entity);
+                const entityPosition = entityTransform.position;
+                console.log(`Entity position: ${entityPosition.x}, ${entityPosition.y}, ${entityPosition.z}`);
+                console.log(`Artwork ID: ${artworkId}`);
+                // Create a TextShape to display the artwork ID
+                const textEntity = engine.addEntity();
+                const textShape = TextShape.create(textEntity, {
+                    text: artworkId.toString(),
+                    fontSize: 20,
+                    textColor: Color4.Magenta()
+                }); // Convert the artwork ID to a string
+                
+                // Calculate the position for the text shape (1.5m higher than the entity's position)
+                const textPosition = Vector3.create(entityPosition.x, entityPosition.y + 1.5, entityPosition.z);
+                Transform.create(textEntity, {
+                    position: textPosition
+                });
+            });
+        });
+    //}
+}
+*/

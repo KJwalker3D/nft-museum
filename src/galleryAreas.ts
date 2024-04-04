@@ -42,7 +42,8 @@ async function createGallery0() {
         groundVideo,
         'Click',
         logoURL,
-        Vector3.create(5, 5, 7)
+        Vector3.create(5, 5, 7),
+        Vector3.One()
     )
     const e4 = createNFT(
         gallery1Pos1,
@@ -50,7 +51,8 @@ async function createGallery0() {
         Vector3.create(4, 4, 4),
         urn2,
         Color3.Yellow(),
-        canvasFrame
+        canvasFrame,
+        'Click'
     )
     const e5 = createNFT(
         gallery1Pos3,
@@ -58,7 +60,8 @@ async function createGallery0() {
         Vector3.create(4, 4, 4),
         urn3,
         Color3.Yellow(),
-        canvasFrame
+        canvasFrame,
+        'Click'
     )
    
     area.entities.push(entity1, entity2, e3, e4, e5);
@@ -211,5 +214,4 @@ export function initializeGalleryAreas() {
         Vector3.create(26.2, 10, 26)
     )
 }
-
 

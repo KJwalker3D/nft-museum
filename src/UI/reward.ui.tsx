@@ -6,6 +6,9 @@ import { reward } from '../claim-dropin/rewards'
 let showRewardUI = reward
 
 
+export let rewardImage = 'images/wearable.png'
+export let rewardName = 'Patch Pants'
+
 export function rewardUI(thumbnail: string, wearableName: string ){
 
 if (showRewardUI) {

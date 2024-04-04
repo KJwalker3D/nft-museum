@@ -8,12 +8,13 @@ import {
   TextureUnion,
   InputAction,
   pointerEventsSystem,
+  VideoEventsSystem,
 } from '@dcl/sdk/ecs';
 import * as utils from '@dcl-sdk/utils';
 import { Vector3, openExternalUrl } from '~system/RestrictedActions';
 import { Quaternion, Color3, Color4 } from '@dcl/sdk/math';
 
-let videoPlayer: any = null;
+//let videoPlayer: VideoEventsSystem;
 
 export async function createToggleableArt(
   position: Vector3,
@@ -23,7 +24,8 @@ export async function createToggleableArt(
   video: string,
   hoverText: string,
   website: string,
-  triggerScale: Vector3
+  triggerScale: Vector3,
+  triggerPosition: Vector3
 ) {
   const toggleableArt = engine.addEntity();
   MeshRenderer.setPlane(toggleableArt);
@@ -65,26 +67,16 @@ export async function createToggleableArt(
   );
 
   try {
-    videoPlayer = await VideoPlayer.create(toggleableArt, {
+     await VideoPlayer.create(toggleableArt, {
       src: video,
       playing: true,
       loop: true,
     });
   } catch (error) {
-    console.error('Error creating video player:', error);
+    console.error(error);
   }
 
-  const artTrigger = utils.addTestCube(
-    {
-      position: position,
-      scale: scale,
-    },
-    undefined,
-    undefined,
-    Color4.create(1, 1, 1, 0),
-    undefined,
-    true
-  );
+  const artTrigger = engine.addEntity()
   utils.triggers.addTrigger(
     artTrigger,
     utils.NO_LAYERS,
@@ -92,19 +84,25 @@ export async function createToggleableArt(
     [
       {
         type: 'box',
+        position: triggerPosition,
         scale: triggerScale,
+
       },
     ],
-    function (otherEntity) {
+    async function (otherEntity) {
       // Toggle between image and video
       const videoTexture = Material.Texture.Video({videoPlayerEntity: toggleableArt})
 
       if (isImage) {
-        VideoPlayer.createOrReplace(toggleableArt, {
-          src: video,
-          playing: true,
-          loop: true
-         })
+        try {
+           await VideoPlayer.create(toggleableArt, {
+            src: video,
+            playing: true,
+            loop: true,
+          });
+        } catch (error) {
+          console.error('Error creating video player:', error);
+        }
          Material.deleteFrom(toggleableArt)
          Material.setPbrMaterial(toggleableArt, {
           texture: videoTexture,
