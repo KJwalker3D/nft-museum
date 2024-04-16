@@ -22,27 +22,7 @@ const descriptionColor = Color4.White()
 const artFrame = 'images/artFrame.png'
 
 
-export function createArtUI(position: Vector3, rotation: Vector3, artworkId: number, artTitle: string, artDescription: string): Entity {
-    const entity = engine.addEntity()
-    ArtComponent.create(entity, { artTitle, artDescription })
-    addArtworkData(entity, artworkId, artTitle, artDescription, true);
-    setArtworkId(entity, artworkId);
-    Transform.create(entity, { position: position, rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z), scale: Vector3.create(1, 0.85, 5) })
-    MeshCollider.setBox(entity)
-  
-    ArtHover.create(entity, { visible: false })
-    PointerEvents.create(entity, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_HOVER_ENTER, eventInfo: {
-            button: InputAction.IA_ANY, hoverText: artTitle,
-          }
-        }
-        
-      ]
-    })
-    return entity
-  }
+
 
 
 

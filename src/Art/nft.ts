@@ -1,6 +1,7 @@
 import { NftFrameType, NftShape, Transform, engine } from "@dcl/ecs";
 import { Color3, Quaternion, Vector3 } from "@dcl/ecs-math";
-import { Enum } from "protobufjs";
+import { pointerEventsSystem, InputAction, MeshCollider } from "@dcl/sdk/ecs";
+import { openNftDialog } from "~system/RestrictedActions";
 
 
 
@@ -10,7 +11,8 @@ export function createNFT(
     scale: Vector3,
     urn: string,
     frameColor: Color3,
-    frameStyle: NftFrameType // listed below
+    frameStyle: NftFrameType, // listed below
+    hoverText: string
 ) 
 {
     let nftEntity = engine.addEntity()
@@ -19,11 +21,28 @@ export function createNFT(
         rotation: Quaternion.fromEulerDegrees(rotation.x, rotation.y, rotation.z),
         scale: scale
     })
+    MeshCollider.setPlane(nftEntity)
+    pointerEventsSystem.onPointerDown(
+        {
+          entity: nftEntity,
+          opts: {
+            button: InputAction.IA_POINTER,
+            hoverText: hoverText,
+          },
+        },
+        function () {
+          console.log('clicked artwork');
+          openNftDialog({
+            urn: urn
+          });
+        }
+      );
     NftShape.create(nftEntity, {
         urn: urn,
         color: frameColor,
         style: frameStyle
     })
+
     return nftEntity
 }
 

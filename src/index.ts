@@ -7,6 +7,7 @@ import { initializeGalleryAreas, loadGalleryArea } from './galleryAreas'
 //import VLM from 'vlm-dcl'
 import { setupUi } from './UI/ui'
 import { playCurrentSong, playRadio, playlist, shufflePlaylist } from './audio'
+import { artHoverSystem, changeArtHoverSystem } from './Art/artHover'
 
 
 
@@ -28,5 +29,6 @@ playCurrentSong()
 // Use this function to trigger the radio (also toggle playlist and radio booleans in audio.ts and ui.tsx)
 //playRadio()
 
-
+changeArtHoverSystem()
+artHoverSystem(100)
 }

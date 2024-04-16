@@ -50,7 +50,8 @@ async function createGallery0() {
         Vector3.create(4, 4, 4),
         urn2,
         Color3.Yellow(),
-        canvasFrame
+        canvasFrame,
+        'Click'
     )
     const e5 = createNFT(
         gallery1Pos3,
@@ -58,7 +59,8 @@ async function createGallery0() {
         Vector3.create(4, 4, 4),
         urn3,
         Color3.Yellow(),
-        canvasFrame
+        canvasFrame,
+        'Click'
     )
    
     area.entities.push(entity1, entity2, e3, e4, e5);
@@ -83,7 +85,7 @@ function createGallery2() {
 }
 
 
-let player = engine.PlayerEntity 
+//let player = engine.PlayerEntity 
 
 // Define gallery areas
 export const galleryAreas: { position: Vector3, entities: Entity[] } [] = [
@@ -187,8 +189,8 @@ function createGalleryEntity(position: Vector3, rotation: Vector3): Entity {
 export function initializeGalleryAreas() {
 
     createGallery0()
-    createGallery1()
-    createGallery2()
+   // createGallery1()
+   // createGallery2()
 
 
     // Create trigger zones around gallery areas
@@ -198,7 +200,7 @@ export function initializeGalleryAreas() {
         Vector3.create(4, 1.5, 8), // position
         Vector3.create(16, 6, 20)); // scale
         
-    
+    /*
     //First floor trigger area
     createGalleryAreaTriggers(
         Vector3.create(6.65, 5.5, 8),
@@ -210,6 +212,8 @@ export function initializeGalleryAreas() {
         Vector3.create(6.65, 12.5, 8),
         Vector3.create(26.2, 10, 26)
     )
+    */
 }
 
 
+// VON MISES POSTERS
